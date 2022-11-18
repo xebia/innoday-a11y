@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "pa11y": "pa11y-ci",
-    "axe": "axe http://localhost:5173/success"
+    "axe": "axe http://localhost:5173/success --save axe-results.json"
   },
   "dependencies": {
     "pa11y-ci-reporter-html": "^5.0.2",
