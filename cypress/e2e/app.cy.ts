@@ -28,7 +28,7 @@ describe("Successful page", () => {
   });
 });
 
-describe("Failing page", () => {
+describe.skip("Failing page", () => {
   it("fails a11y check", () => {
     cy.visit("/");
     cy.injectAxe();
