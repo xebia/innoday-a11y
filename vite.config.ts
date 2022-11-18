@@ -5,6 +5,7 @@ export default defineConfig({
   plugins: [vue()],
   preview: {
     strictPort: true,
+    port: 5173,
   },
   test: {
     environment: "jsdom",
