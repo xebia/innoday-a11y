@@ -1,0 +1,23 @@
+name: Lighthouse CI
+on: pull_request
+jobs:
+  lighthouseci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - name: Prepare application
+        run: |
+          npm ci
+          npm run build
+      - name: Setup and run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli
+          lhci --collect.isSinglePageApplication=true --collect.settings.chromeFlags="--headless --no-sandbox --allow-insecure-localhost --ignore-urlfetcher-cert-requests" --assert.preset=lighthouse:recommended autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
