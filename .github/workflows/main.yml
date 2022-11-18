@@ -1,23 +1,23 @@
 name: Lighthouse CI
-on: push
+on: pull_request
 jobs:
-  lighthouse:
+  lighthouseci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-      - uses: actions/setup-node@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
-      - name: prepare application
+          node-version: 16.x
+      - name: Prepare application
         run: |
-          npm install
+          npm ci
           npm run build
-      - name: run Lighthouse CI
+      - name: Setup and run Lighthouse CI
         run: |
-          npm install -g @lhci/cli@0.9.x
-          lhci autorun --upload.target=temporary-public-storage
-        continue-on-error: true
+          npm install -g @lhci/cli
+          lhci --upload.target=temporary-public-storage --collect.staticDistDir=./dist --collect.isSinglePageApplication=true --collect.settings.chromeFlags="--headless --no-sandbox --allow-insecure-localhost --ignore-urlfetcher-cert-requests" --assert.preset=lighthouse:no-pwa autorun
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
