@@ -10,7 +10,7 @@ on:
     branches: ["master"]
 
 jobs:
-  build:
+  unittest:
     runs-on: ubuntu-latest
 
     strategy:
@@ -25,6 +25,45 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - run: npm ci
-      - run: npm run build
+      - name: Unit tests with vitest-axe
+        run: npm run test -- run
+  e2e:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm ci
+      - name: Unit tests with vitest-axe
+        run: npm run build
       - run: npm run preview & npx wait-on http://localhost:5173
-      - run: npm run axe -- --exit
+      - name: Axe CLI against running prod build
+        run: npm run axe -- --exit
+      - name: Read Axe output file.
+        id: axe_output
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./axe-results.json
+      - uses: actions/upload-artifact@v3
+        with:
+          name: axe-results
+          path: axe-results.json
+      - name: Comment on pull request.
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          message: "<details><summary>Axe testing results</summary>
+
+
+
+```${{ steps.axe_output.outputs.content }}```
+
+</details>"
