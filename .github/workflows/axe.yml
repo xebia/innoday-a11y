@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-      - run: npm ci
+      - run: npm ci --legacy-peer-deps
       - name: Unit tests with vitest-axe
         run: npm run test -- run
   axe-cli:
@@ -40,7 +40,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-      - run: npm ci
+      - run: npm ci --legacy-peer-deps
       - name: Unit tests with vitest-axe
         run: npm run build
       - run: npm run preview & npx wait-on http://localhost:5173
@@ -66,7 +66,7 @@ jobs:
 ```${{ steps.axe_output.outputs.content }}```
 
 </details>"
-e2e:
+  e2e:
     runs-on: ubuntu-latest
 
     strategy:
@@ -80,7 +80,7 @@ e2e:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-      - run: npm ci
+      - run: npm ci --legacy-peer-deps
       - name: Unit tests with vitest-axe
         run: npm run build
       - run: npm run preview & npx wait-on http://localhost:5173
