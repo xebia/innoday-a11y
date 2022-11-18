@@ -1,16 +1,33 @@
 import { describe, expect, it } from "vitest";
-import { render, prettyDOM } from "@testing-library/vue";
+import { render } from "@testing-library/vue";
 import { axe } from "vitest-axe";
+import App from "./App.vue";
 import FailingPage from "./FailingPage.vue";
+import SuccessfulPage from "./SuccessfulPage.vue";
 import { router } from "./router";
 
-describe("Failing page", () => {
-  it("should fail a11y test", async () => {
-    const { html } = render(FailingPage, {
+describe("App", () => {
+  const renderApp = async (route: string) => {
+    await router.push(route);
+    return render(App, {
       global: {
+        components: {
+          FailingPage,
+          SuccessfulPage,
+        },
         plugins: [router],
       },
     });
+  };
+
+  it("should succeed a11y test", async () => {
+    const { html } = await renderApp("/success");
+
+    expect(await axe(html())).toHaveNoViolations();
+  });
+
+  it("should fail a11y test", async () => {
+    const { html } = await renderApp("/"); // redirects to /fail
 
     expect(await axe(html())).toHaveNoViolations();
   });

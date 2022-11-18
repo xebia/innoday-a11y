@@ -25,6 +25,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
       - run: npm ci
-      - run: npm run build
+      - name: Unit tests with vitest-axe
+        run: npm run test -- run
+      - if: always()
+        run: npm run build
       - run: npm run preview & npx wait-on http://localhost:5173
-      - run: npm run axe -- --exit
+      - name: Axe CLI against running prod build
+        run: npm run axe -- --exit

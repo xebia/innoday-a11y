@@ -1,4 +1,5 @@
 <template>
+  <header>This is our app</header>
   <router-view></router-view>
 </template>
 
