@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "pa11y-ci-reporter-html": "^5.0.2",
-    "vue": "^3.2.37"
+    "vue": "^3.2.37",
+    "vue-router": "4.1.6"
   },
   "devDependencies": {
     "@axe-core/cli": "4.5.2",
