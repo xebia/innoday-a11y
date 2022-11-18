@@ -1,4 +1,9 @@
 {
+  "defaults": {
+    "reporters": [
+      "pa11y-ci-reporter-html"
+    ]
+  },
   "urls": [
     "http://localhost:5173"
   ]
