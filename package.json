@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "npm run dev",
+    "start-detached": "npm run dev &",
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
