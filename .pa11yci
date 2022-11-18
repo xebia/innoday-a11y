@@ -1,6 +1,7 @@
 {
   "defaults": {
     "reporters": [
+      "cli",
       "pa11y-ci-reporter-html"
     ],
     "includeWarnings": true

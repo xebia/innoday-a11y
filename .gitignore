@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 
 pa11y-ci-report
+pa11y_output.txt
