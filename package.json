@@ -8,21 +8,26 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
+    "test": "vitest",
     "pa11y": "pa11y-ci",
     "axe": "axe http://localhost:5173/success"
   },
   "dependencies": {
     "pa11y-ci-reporter-html": "^5.0.2",
+    "vitest": "0.25.2",
     "vue": "^3.2.37",
     "vue-router": "4.1.6"
   },
   "devDependencies": {
     "@axe-core/cli": "4.5.2",
+    "@testing-library/vue": "6.6.1",
     "@vitejs/plugin-vue": "^3.0.0",
+    "jsdom": "20.0.2",
     "pa11y-ci": "^3.0.1",
     "pa11y-reporter-html": "^2.0.0",
     "typescript": "^4.6.4",
     "vite": "^3.0.0",
+    "vitest-axe": "0.1.0",
     "vue-tsc": "^0.38.4"
   }
 }
