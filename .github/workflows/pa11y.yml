@@ -1,4 +1,4 @@
-name: pa11y tests
+name: Pa11y CI
 
 on: [pull_request]
 
