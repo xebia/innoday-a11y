@@ -2,9 +2,11 @@
   "defaults": {
     "reporters": [
       "pa11y-ci-reporter-html"
-    ]
+    ],
+    "includeWarnings": true
   },
   "urls": [
-    "http://localhost:5173"
+    "http://localhost:5173",
+    "http://localhost:5173/success"
   ]
 }
