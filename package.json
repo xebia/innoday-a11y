@@ -29,5 +29,8 @@
     "vite": "^3.0.0",
     "vitest-axe": "0.1.0",
     "vue-tsc": "^0.38.4"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
