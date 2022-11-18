@@ -21,14 +21,14 @@ describe("App", () => {
   };
 
   it("should succeed a11y test", async () => {
-    const { html } = await renderApp("/success");
+    const { container } = await renderApp("/success");
 
-    expect(await axe(html())).toHaveNoViolations();
+    expect(await axe(container)).toHaveNoViolations();
   });
 
   it("should fail a11y test", async () => {
-    const { html } = await renderApp("/"); // redirects to /fail
+    const { container } = await renderApp("/"); // redirects to /fail
 
-    expect(await axe(html())).toHaveNoViolations();
+    expect(await axe(container)).toHaveNoViolations();
   });
 });
