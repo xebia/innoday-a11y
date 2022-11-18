@@ -16,6 +16,7 @@
     "cy:run": "cypress run"
   },
   "dependencies": {
+    "axe-html-reporter": "2.2.3",
     "cypress-axe": "1.0.0",
     "pa11y-ci-reporter-html": "^5.0.2",
     "vitest": "0.25.2",

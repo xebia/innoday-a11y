@@ -1,6 +1,8 @@
 import * as axe from "axe-core";
 
-function terminalLog(violations: axe.Result[]) {
+const terminalLog = (reportFileName: string) => (violations: axe.Result[]) => {
+  cy.task("report", { reportFileName, violations });
+
   cy.task(
     "log",
     `${violations.length} accessibility violation${
@@ -18,20 +20,20 @@ function terminalLog(violations: axe.Result[]) {
   );
 
   cy.task("table", violationData);
-}
+};
 
 describe("Successful page", () => {
   it("passes a11y check", () => {
     cy.visit("/success");
     cy.injectAxe();
-    cy.checkA11y(null, null, terminalLog);
+    cy.checkA11y(null, null, terminalLog("success"));
   });
 });
 
-describe.skip("Failing page", () => {
+describe("Failing page", () => {
   it("fails a11y check", () => {
     cy.visit("/");
     cy.injectAxe();
-    cy.checkA11y(null, null, terminalLog);
+    cy.checkA11y(null, null, terminalLog("fail"));
   });
 });
