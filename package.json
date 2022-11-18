@@ -11,7 +11,9 @@
     "preview": "vite preview",
     "test": "vitest",
     "pa11y": "pa11y-ci",
-    "axe": "axe http://localhost:5173/success --save axe-results.json"
+    "axe": "axe http://localhost:5173/success --save axe-results.json",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "dependencies": {
     "pa11y-ci-reporter-html": "^5.0.2",
@@ -23,6 +25,7 @@
     "@axe-core/cli": "4.5.2",
     "@testing-library/vue": "6.6.1",
     "@vitejs/plugin-vue": "^3.0.0",
+    "cypress": "11.1.0",
     "jsdom": "20.0.2",
     "pa11y-ci": "^3.0.1",
     "pa11y-reporter-html": "^2.0.0",
