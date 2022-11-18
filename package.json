@@ -16,6 +16,7 @@
     "cy:run": "cypress run"
   },
   "dependencies": {
+    "cypress-axe": "1.0.0",
     "pa11y-ci-reporter-html": "^5.0.2",
     "vitest": "0.25.2",
     "vue": "^3.2.37",
