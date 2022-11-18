@@ -9,7 +9,7 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "pa11y": "pa11y-ci",
-    "axe": "axe http://localhost:5173"
+    "axe": "axe http://localhost:5173/success"
   },
   "dependencies": {
     "pa11y-ci-reporter-html": "^5.0.2",
